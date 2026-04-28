@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Вопросы для подготовки к экзамену · Создание и поддержка сайта</title>
+<style>
+  :root {
+    --bg: #0b0d10;
+    --bg-elev: #14181d;
+    --bg-card: #181d24;
+    --border: #232932;
+    --text: #e8ecf1;
+    --text-dim: #9aa3ad;
+    --accent: #7c5cff;
+    --accent-2: #2dd4bf;
+    --radius: 14px;
+    --shadow: 0 4px 24px rgba(0,0,0,.35);
+    --maxw: 920px;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, "Segoe UI", Inter, system-ui, "Helvetica Neue", Arial, sans-serif;
+    background: radial-gradient(1200px 600px at 80% -10%, rgba(124,92,255,.15), transparent 60%),
+                radial-gradient(900px 500px at -10% 30%, rgba(45,212,191,.08), transparent 60%),
+                var(--bg);
+    color: var(--text);
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+  header.hero {
+    max-width: var(--maxw); margin: 0 auto; padding: 56px 24px 24px;
+  }
+  .eyebrow {
+    color: var(--accent-2); font-weight: 600; letter-spacing: .12em; text-transform: uppercase; font-size: 12px;
+  }
+  h1 {
+    font-size: clamp(28px, 4.2vw, 44px); margin: 8px 0 6px; letter-spacing: -.02em;
+  }
+  .subtitle { color: var(--text-dim); font-size: 16px; margin-bottom: 18px; }
+  .meta { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    background: var(--bg-elev); border: 1px solid var(--border); padding: 6px 10px;
+    border-radius: 999px; font-size: 12px; color: var(--text-dim);
+  }
+  main { max-width: var(--maxw); margin: 0 auto; padding: 12px 24px 80px; }
+  .toolbar {
+    position: sticky; top: 0; z-index: 5;
+    background: rgba(11,13,16,.85); backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+    padding: 12px 0; margin: 16px 0 28px;
+    display: flex; flex-wrap: wrap; gap: 8px; align-items: center;
+  }
+  .filter-btn {
+    background: var(--bg-elev); color: var(--text); border: 1px solid var(--border);
+    padding: 8px 12px; border-radius: 999px; cursor: pointer; font-size: 13px;
+    transition: all .15s ease;
+  }
+  .filter-btn:hover { border-color: var(--accent); color: #fff; }
+  .filter-btn.active { background: var(--accent); border-color: var(--accent); color: #fff; }
+  section.block { margin-top: 28px; }
+  section.block h2 { font-size: 22px; margin: 0 0 6px; letter-spacing: -.01em; }
+  section.block .desc { color: var(--text-dim); font-size: 14px; margin-bottom: 16px; }
+  .q {
+    background: var(--bg-card); border: 1px solid var(--border); border-radius: var(--radius);
+    padding: 18px 18px 14px; margin-bottom: 14px; box-shadow: var(--shadow);
+  }
+  .q-head {
+    display: flex; gap: 10px; align-items: baseline; margin-bottom: 10px;
+  }
+  .q-num {
+    font-variant-numeric: tabular-nums; color: var(--accent-2); font-weight: 700;
+    min-width: 36px;
+  }
+  .q-topic {
+    margin-left: auto; font-size: 11px; letter-spacing: .08em; text-transform: uppercase;
+    color: var(--text-dim); border: 1px solid var(--border); padding: 3px 8px; border-radius: 6px;
+  }
+  .q-text { font-size: 15px; }
+  ol.opts {
+    margin: 12px 0 0; padding: 0; list-style: none; counter-reset: opt;
+  }
+  ol.opts li {
+    counter-increment: opt;
+    padding: 10px 12px 10px 38px; border-radius: 10px; border: 1px solid var(--border);
+    margin: 6px 0; position: relative; user-select: none;
+    font-size: 14px;
+  }
+  ol.opts li::before {
+    content: counter(opt, upper-alpha);
+    position: absolute; left: 12px; top: 50%; transform: translateY(-50%);
+    width: 22px; height: 22px; border-radius: 6px;
+    background: var(--bg-elev); border: 1px solid var(--border);
+    display: inline-flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: 700; color: var(--text-dim);
+  }
+  footer {
+    max-width: var(--maxw); margin: 0 auto; padding: 24px; color: var(--text-dim); font-size: 13px;
+    text-align: center; border-top: 1px solid var(--border);
+  }
+  .hidden { display: none !important; }
+  @media (max-width: 600px) {
+    header.hero { padding: 36px 18px 16px; }
+    main { padding: 8px 18px 60px; }
+    .toolbar { gap: 6px; }
+    .filter-btn { font-size: 12px; padding: 7px 10px; }
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="eyebrow">Курс «Создание и поддержка сайта» · 3 курс маркетинга</div>
+  <h1>Вопросы для подготовки к экзамену</h1>
+  <p class="subtitle">Тестовые и развёрнутые вопросы по 6 лекциям курса. Используйте этот список для самостоятельной подготовки.</p>
+  <div class="meta">
+    <span class="chip">30 коротких вопросов</span>
+    <span class="chip">20 развёрнутых</span>
+    <span class="chip">5 тем</span>
+    <span class="chip">Лектор: Борис Базанов</span>
+  </div>
+</header>
+
+<main>
+  <div class="toolbar" id="toolbar">
+    <button class="filter-btn active" data-filter="all">Все темы</button>
+    <button class="filter-btn" data-filter="content">Контент</button>
+    <button class="filter-btn" data-filter="cms">CMS</button>
+    <button class="filter-btn" data-filter="business">Бизнес-задачи</button>
+    <button class="filter-btn" data-filter="metrics">Метрики</button>
+    <button class="filter-btn" data-filter="seo">SEO/PPC/Медийка</button>
+  </div>
+
+  <section class="block">
+    <h2>Часть 1. Короткие вопросы (выбор варианта)</h2>
+    <p class="desc">30 вопросов с 4 вариантами ответа. Выберите один правильный вариант для каждого вопроса.</p>
+    <div id="mcq-list"></div>
+  </section>
+
+  <section class="block">
+    <h2>Часть 2. Развёрнутые вопросы</h2>
+    <p class="desc">20 открытых вопросов. Подготовьте развёрнутый ответ с обоснованием по каждому.</p>
+    <div id="open-list"></div>
+  </section>
+</main>
+
+<footer>
+  Список вопросов для подготовки · приём экзамена в Telegram-боте
+</footer>
+
+<script>
+const TOPICS = {
+  content: { label: "Контент", color: "#7c5cff" },
+  cms: { label: "CMS", color: "#22c55e" },
+  business: { label: "Бизнес-задачи", color: "#f59e0b" },
+  metrics: { label: "Метрики", color: "#2dd4bf" },
+  seo: { label: "SEO/PPC/Медийка", color: "#ef4444" },
+};
+
+const MCQ = [
+  { topic: "content", q: "Как соотносятся «сайт» и «контент» по лекции Базанова?",
+    opts: ["Сайт важнее контента", "Сайт — оболочка, контент — ценность", "Контент — это только тексты", "Без сайта не нужен контент"] },
+  { topic: "content", q: "Какие 4 ключевые функции контента названы в лекции?",
+    opts: ["Информирует, развлекает, рекламирует, обучает", "Привлекает, удерживает, конвертирует, удивляет", "Продаёт, объясняет, вовлекает, помогает", "Создаёт, оформляет, публикует, обновляет"] },
+  { topic: "content", q: "Главное ограничение AI-контента?",
+    opts: ["AI слишком дорогой", "AI работает медленнее человека", "Шаблонность, отсутствие tone of voice, нужна редактура", "AI не умеет генерировать тексты"] },
+  { topic: "content", q: "Что такое UGC?",
+    opts: ["Universal Generated Content", "User Generated Content — отзывы, рейтинги, комментарии", "Unique Generic Content", "User Group Community"] },
+  { topic: "content", q: "Какая «формула» даёт лучший контент по лекции?",
+    opts: ["AI + бюджет", "Копирайтер + дизайнер", "AI + Человек + Данные", "SEO + UGC"] },
+  { topic: "content", q: "Что такое Content Pipeline в e-commerce?",
+    opts: ["Хранилище контента", "AI → SEO → Копирайтер → Публикация (CMS/API)", "План публикаций в соцсетях", "База клиентов"] },
+  { topic: "content", q: "Какие принципы качественного контента названы в лекции?",
+    opts: ["Структура важнее текста; контент под задачу; SEO встроено", "Длинные тексты и максимум ключевых слов", "Только AI-генерация для скорости", "Только копирайтер для уникальности"] },
+
+  { topic: "cms", q: "Что такое CMS простыми словами?",
+    opts: ["Сервер для сайта", "Программная система для создания и управления контентом сайта без написания кода", "База данных сайта", "Система шаблонов дизайна"] },
+  { topic: "cms", q: "Главное отличие CMS от фреймворка?",
+    opts: ["CMS платная, фреймворк бесплатный", "В CMS уже есть админка и готовый функционал; фреймворк — инструменты для разработчиков, всё пишется с нуля", "CMS работает только в облаке", "Фреймворк не требует серверов"] },
+  { topic: "cms", q: "Какая CMS подходит для крупного интернет-магазина с интеграцией 1С и сложной логистикой?",
+    opts: ["Tilda", "WordPress", "1C-Битрикс или Magento", "Wix"] },
+  { topic: "cms", q: "Что такое Headless CMS?",
+    opts: ["CMS без админ-панели", "CMS, где контент хранится отдельно и отдаётся через API на разные платформы (сайт, приложение, ТВ)", "Бесплатная версия любой CMS", "Облачный SaaS-конструктор"] },
+  { topic: "cms", q: "Что НЕ относится к типичным ошибкам при работе с CMS?",
+    opts: ["Перегрузка сайта плагинами", "Игнорирование SEO-настроек", "Регулярные обновления и резервное копирование", "Выбор CMS «по совету друга» без анализа задач"] },
+
+  { topic: "business", q: "Какова базовая модель построения сайта по Базанову?",
+    opts: ["Дизайн → Разработка → Тестирование → Запуск", "Задача → Действие → Интерфейс → Метрика", "Бриф → Прототип → Дизайн → Код", "Идея → Контент → Реклама → Продажи"] },
+  { topic: "business", q: "Почему Lada.ru приведён как пример слабого performance UX?",
+    opts: ["Сайт слишком быстрый", "Нет чёткого CTA, слайдер без сценария, много визуала и мало пользы", "Слишком мало визуала", "Нет мобильной версии"] },
+  { topic: "business", q: "Почему О'КЕЙ сделал два сайта — okeydostavka.ru и okmarket.ru?",
+    opts: ["Требование закона", "Разные бизнес-задачи: один — продажи онлайн, второй — имидж и трафик в офлайн", "Случайно купили два домена", "Один сайт сломался"] },
+  { topic: "business", q: "Какие задачи кроме продаж может решать сайт по лекции?",
+    opts: ["Только продажи и имидж", "Имидж, публичная отчётность, HR, поддержка, B2B-портал", "Только информирование клиентов", "Только хранение данных компании"] },
+  { topic: "business", q: "Главный вопрос маркетолога перед созданием сайта?",
+    opts: ["«Какой бюджет?»", "«Что должен сделать пользователь?»", "«Какая CMS?»", "«Сколько страниц делаем?»"] },
+
+  { topic: "metrics", q: "Чем отличается уникальный пользователь от визита?",
+    opts: ["Это синонимы", "Пользователь — уникальный браузер/устройство; визитов у одного пользователя может быть много", "Визит — это всегда покупка", "Пользователь учитывается раз в месяц"] },
+  { topic: "metrics", q: "Какой Bounce Rate считается тревожным сигналом?",
+    opts: ["< 40%", "40–60%", "> 60%", "Любой выше 20%"] },
+  { topic: "metrics", q: "Что показывает CTR?",
+    opts: ["Цену клика", "Релевантность объявления (клики/показы × 100%)", "Конверсию сайта", "Долю отказов"] },
+  { topic: "metrics", q: "Формула CPA?",
+    opts: ["Расходы / Клики", "Расходы / Целевые действия", "Клики / Показы", "Целевые действия / Визиты"] },
+  { topic: "metrics", q: "Почему время на сайте — «опасная» метрика?",
+    opts: ["Её нельзя измерить технически", "Долго может означать и вовлечённость, и проблему — нужно читать вместе с bounce rate и глубиной просмотра", "Она запрещена", "Она всегда означает плохое поведение"] },
+  { topic: "metrics", q: "Что обычно сигнализирует рост CPC при низком CTR?",
+    opts: ["Сайт сломался", "Проблема с релевантностью объявления, конкуренцией в аукционе или семантикой", "Клиенты стали богаче", "Метрика всегда должна расти"] },
+  { topic: "metrics", q: "Как маркетолог должен работать с метриками по Базанову?",
+    opts: ["Открывать все 40 отчётов каждый день", "Следить за недельной динамикой и реагировать на отклонения > 20%, сравнивать периоды", "Смотреть только в конце месяца", "Делать выводы по одной метрике"] },
+
+  { topic: "seo", q: "Какова доля Яндекса в поиске РФ на март 2026 (по лекции)?",
+    opts: ["~25%", "~50%", "~73%", "~95%"] },
+  { topic: "seo", q: "Какие 3 шага работы поисковика?",
+    opts: ["Запрос → Ответ → Реклама", "Crawl → Index → Rank (сканирование, индексирование, ранжирование)", "Поиск → Сайт → Покупка", "URL → Дизайн → Контент"] },
+  { topic: "seo", q: "Из каких трёх компонентов состоит модель SEO?",
+    opts: ["Дизайн + Контент + Реклама", "Tech + Content + Authority", "SEO + SMM + PPC", "HTML + CSS + JS"] },
+  { topic: "seo", q: "Какой аукцион использует Яндекс.Директ?",
+    opts: ["Аукцион первой цены", "VCG — «цена второго»", "Open auction", "Голландский аукцион"] },
+  { topic: "seo", q: "Что такое Viewability в медийной рекламе?",
+    opts: ["Стоимость показа", "Количество показов", "Стандарт IAB/MRC: ≥50% площади баннера видно ≥1 секунды", "Скорость загрузки баннера"] },
+  { topic: "seo", q: "Какой канал создаёт спрос (верх воронки)?",
+    opts: ["SEO", "PPC / Контекст", "Медийка / Programmatic", "Email-рассылки"] },
+];
+
+const OPEN = [
+  { topic: "content", q: "Объясните принцип «AI + Человек + Данные» в современном контент-производстве. Почему ни один из этих компонентов сам по себе недостаточен? Приведите пример задачи, где необходимы все три." },
+  { topic: "content", q: "Опишите детальную структуру карточки товара на Amazon (минимум 5 элементов) и обоснуйте, почему именно такая структура минимизирует трение при покупке." },
+  { topic: "content", q: "Сравните роль AI и копирайтера в контент-команде. В каких задачах нужно отдать работу AI, а в каких — копирайтеру? Обоснуйте." },
+  { topic: "content", q: "Что такое Content Lifecycle? Перечислите этапы и объясните, что происходит на каждом и кто за это отвечает." },
+
+  { topic: "cms", q: "Объясните разницу между CMS и фреймворком. Когда выбрать CMS, а когда — фреймворк? Приведите примеры проектов." },
+  { topic: "cms", q: "Что такое Headless CMS, чем она отличается от классической, и какой бизнес-сценарий делает её необходимой?" },
+  { topic: "cms", q: "Опишите критерии выбора CMS и обоснуйте, почему «выбор по совету друга» — частая ошибка. Дайте 5 критериев." },
+  { topic: "cms", q: "Какие типы CMS бывают (классические, конструкторы, e-commerce, headless)? Подберите тип CMS под кейсы: 1) лендинг для самозанятого, 2) интернет-магазин на 50 000 SKU с 1С, 3) корпоративный портал банка с разными правами." },
+
+  { topic: "business", q: "Объясните модель «Задача → Действие → Интерфейс → Метрика» Базанова на примере банка или интернет-магазина. Заполните все 4 шага." },
+  { topic: "business", q: "Сравните performance UX Wildberries и Lada.ru. Что делает один эффективным, а другой слабым? Какие конкретные элементы интерфейса работают/не работают?" },
+  { topic: "business", q: "Кейс О'КЕЙ: разберите подробно, почему компания сделала два сайта вместо одного. Какие задачи решает каждый?" },
+  { topic: "business", q: "Что значит «один сайт — одна главная задача»? Какие риски возникают, если этот принцип нарушить?" },
+  { topic: "business", q: "Опишите минимум 3 бизнес-задачи сайта помимо продаж. Приведите пример сайта/компании для каждой и объясните, почему нужен разный tone of voice." },
+
+  { topic: "metrics", q: "Объясните, чем уникальные пользователи отличаются от визитов. Почему высокий трафик при малом числе уникальных может говорить о лояльной аудитории, а большой uniques без повторов — о разовом трафике?" },
+  { topic: "metrics", q: "Что такое Bounce Rate, как его правильно интерпретировать и какие действия предпринять при его росте?" },
+  { topic: "metrics", q: "Сценарий: трафик +22%, Bounce Rate 71%, время на сайте −55%. Какие у вас гипотезы и какие шаги диагностики?" },
+  { topic: "metrics", q: "Сценарий: CPA +140%, конверсия −60%, бюджет тот же. Воронка показывает: 96% теряется на шаге «страница товара → корзина». Где искать проблему и почему правильный совет — «не трогать ставки»?" },
+  { topic: "metrics", q: "Что такое CTR, CPC и CPA? Объясните каждую метрику и какой вопрос она отвечает. Покажите цепочку причинности (если CTR падает — что меняется дальше)." },
+
+  { topic: "seo", q: "Сравните SEO, PPC и Медийку как каналы продвижения. Какую задачу решает каждый, какие KPI у него и в каком этапе воронки он работает?" },
+  { topic: "seo", q: "Сравните Яндекс.Директ и Google Ads: аукцион, инвентарь, логика оптимизации. Почему в РФ работают обе, но приоритет — Яндекс?" },
+  { topic: "seo", q: "Объясните типы соответствия в Google Ads (broad/phrase/exact) и операторы Яндекс.Директа. Какая ошибка возникает при использовании широкого соответствия без минус-слов?" },
+  { topic: "seo", q: "Что такое Programmatic? Опишите цепочку «Рекламодатель → DSP → RTB → SSP → Площадка» и объясните, почему важны Viewability, Brand Safety и Ad Fraud-контроль." },
+  { topic: "seo", q: "Опишите модель SEO: Tech + Content + Authority. Что входит в каждый блок и какова роль маркетолога в каждом из них?" },
+  { topic: "seo", q: "Объясните, что такое Crawl → Index → Rank. Что управляет каждым шагом и как маркетолог может на это влиять?" },
+  { topic: "seo", q: "Что такое воронка PPC и как использовать её для диагностики кампании? Покажите цепочку: Показы → CTR → Клики → CPC → Расход → Конверсии → Cost/Conv." },
+];
+
+const TOPIC_LABELS = Object.fromEntries(Object.entries(TOPICS).map(([k, v]) => [k, v.label]));
+
+function renderMCQ() {
+  const root = document.getElementById("mcq-list");
+  root.innerHTML = MCQ.map((item, i) => `
+    <article class="q" data-topic="${item.topic}">
+      <div class="q-head">
+        <span class="q-num">${String(i + 1).padStart(2, "0")}</span>
+        <span class="q-text">${item.q}</span>
+        <span class="q-topic">${TOPIC_LABELS[item.topic]}</span>
+      </div>
+      <ol class="opts">
+        ${item.opts.map(opt => `<li>${opt}</li>`).join("")}
+      </ol>
+    </article>
+  `).join("");
+}
+
+function renderOpen() {
+  const root = document.getElementById("open-list");
+  root.innerHTML = OPEN.map((item, i) => `
+    <article class="q" data-topic="${item.topic}">
+      <div class="q-head">
+        <span class="q-num">${String(i + 1).padStart(2, "0")}</span>
+        <span class="q-text">${item.q}</span>
+        <span class="q-topic">${TOPIC_LABELS[item.topic]}</span>
+      </div>
+    </article>
+  `).join("");
+}
+
+renderMCQ();
+renderOpen();
+
+document.querySelectorAll(".filter-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".filter-btn").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    const f = btn.dataset.filter;
+    document.querySelectorAll(".q").forEach(q => {
+      q.classList.toggle("hidden", f !== "all" && q.dataset.topic !== f);
+    });
+  });
+});
+</script>
+</body>
+</html>
