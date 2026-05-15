@@ -216,7 +216,7 @@
   <h1>Создание и поддержка сайта</h1>
   <p class="subtitle">Часть 1 — выберите один правильный вариант в каждом вопросе. Часть 2 — два случайных вопроса для развёрнутого устного ответа.</p>
   <div class="meta">
-    <span class="chip">30 коротких вопросов</span>
+    <span class="chip">21 короткий вопрос</span>
     <span class="chip">2 развёрнутых</span>
     <span class="chip">Лектор: Борис Базанов</span>
   </div>
@@ -304,11 +304,11 @@ const MCQ = [
   { topic: "content", q: "Главное ограничение AI-контента?",
     opts: ["AI слишком дорогой", "AI работает медленнее человека", "Шаблонность, отсутствие tone of voice, нужна редактура", "AI не умеет генерировать тексты"], correct: 2 },
   { topic: "content", q: "Что такое UGC?",
-    opts: ["Universal Generated Content", "User Generated Content — отзывы, рейтинги, комментарии", "Unique Generic Content", "User Group Community"], correct: 1 },
+    opts: ["Universal Generated Content", "User Generated Content — отзывы, рейтинги, комментарии", "Unique Generic Content", "User Group Community"], correct: 1, hide: true },
   { topic: "content", q: "Какая «формула» даёт лучший контент по лекции?",
     opts: ["AI + бюджет", "Копирайтер + дизайнер", "AI + Человек + Данные", "SEO + UGC"], correct: 2 },
   { topic: "content", q: "Что такое Content Pipeline в e-commerce?",
-    opts: ["Хранилище контента", "AI → SEO → Копирайтер → Публикация (CMS/API)", "План публикаций в соцсетях", "База клиентов"], correct: 1 },
+    opts: ["Хранилище контента", "AI → SEO → Копирайтер → Публикация (CMS/API)", "План публикаций в соцсетях", "База клиентов"], correct: 1, hide: true },
   { topic: "content", q: "Какие принципы качественного контента названы в лекции?",
     opts: ["Структура важнее текста; контент под задачу; SEO встроено", "Длинные тексты и максимум ключевых слов", "Только AI-генерация для скорости", "Только копирайтер для уникальности"], correct: 0 },
 
@@ -317,16 +317,16 @@ const MCQ = [
   { topic: "cms", q: "Главное отличие CMS от фреймворка?",
     opts: ["CMS платная, фреймворк бесплатный", "В CMS уже есть админка и готовый функционал; фреймворк — инструменты для разработчиков, всё пишется с нуля", "CMS работает только в облаке", "Фреймворк не требует серверов"], correct: 1 },
   { topic: "cms", q: "Какая CMS подходит для крупного интернет-магазина с интеграцией 1С и сложной логистикой?",
-    opts: ["Tilda", "WordPress", "1C-Битрикс или Magento", "Wix"], correct: 2 },
+    opts: ["Tilda", "WordPress", "1C-Битрикс или Magento", "Wix"], correct: 2, hide: true },
   { topic: "cms", q: "Что такое Headless CMS?",
-    opts: ["CMS без админ-панели", "CMS, где контент хранится отдельно и отдаётся через API на разные платформы (сайт, приложение, ТВ)", "Бесплатная версия любой CMS", "Облачный SaaS-конструктор"], correct: 1 },
+    opts: ["CMS без админ-панели", "CMS, где контент хранится отдельно и отдаётся через API на разные платформы (сайт, приложение, ТВ)", "Бесплатная версия любой CMS", "Облачный SaaS-конструктор"], correct: 1, hide: true },
   { topic: "cms", q: "Что НЕ относится к типичным ошибкам при работе с CMS?",
     opts: ["Перегрузка сайта плагинами", "Игнорирование SEO-настроек", "Регулярные обновления и резервное копирование", "Выбор CMS «по совету друга» без анализа задач"], correct: 2 },
 
   { topic: "business", q: "Какова базовая модель построения сайта по Базанову?",
     opts: ["Дизайн → Разработка → Тестирование → Запуск", "Задача → Действие → Интерфейс → Метрика", "Бриф → Прототип → Дизайн → Код", "Идея → Контент → Реклама → Продажи"], correct: 1 },
   { topic: "business", q: "Почему Lada.ru приведён как пример слабого performance UX?",
-    opts: ["Сайт слишком быстрый", "Нет чёткого CTA, слайдер без сценария, много визуала и мало пользы", "Слишком мало визуала", "Нет мобильной версии"], correct: 1 },
+    opts: ["Сайт слишком быстрый", "Нет чёткого CTA, слайдер без сценария, много визуала и мало пользы", "Слишком мало визуала", "Нет мобильной версии"], correct: 1, hide: true },
   { topic: "business", q: "Почему О'КЕЙ сделал два сайта — okeydostavka.ru и okmarket.ru?",
     opts: ["Требование закона", "Разные бизнес-задачи: один — продажи онлайн, второй — имидж и трафик в офлайн", "Случайно купили два домена", "Один сайт сломался"], correct: 1 },
   { topic: "business", q: "Какие задачи кроме продаж может решать сайт по лекции?",
@@ -341,7 +341,7 @@ const MCQ = [
   { topic: "metrics", q: "Что показывает CTR?",
     opts: ["Цену клика", "Релевантность объявления (клики/показы × 100%)", "Конверсию сайта", "Долю отказов"], correct: 1 },
   { topic: "metrics", q: "Формула CPA?",
-    opts: ["Расходы / Клики", "Расходы / Целевые действия", "Клики / Показы", "Целевые действия / Визиты"], correct: 1 },
+    opts: ["Расходы / Клики", "Расходы / Целевые действия", "Клики / Показы", "Целевые действия / Визиты"], correct: 1, hide: true },
   { topic: "metrics", q: "Почему время на сайте — «опасная» метрика?",
     opts: ["Её нельзя измерить технически", "Долго может означать и вовлечённость, и проблему — нужно читать вместе с bounce rate и глубиной просмотра", "Она запрещена", "Она всегда означает плохое поведение"], correct: 1 },
   { topic: "metrics", q: "Что обычно сигнализирует рост CPC при низком CTR?",
@@ -352,11 +352,11 @@ const MCQ = [
   { topic: "seo", q: "Какова доля Яндекса в поиске РФ на март 2026 (по лекции)?",
     opts: ["~25%", "~50%", "~73%", "~95%"], correct: 2 },
   { topic: "seo", q: "Какие 3 шага работы поисковика?",
-    opts: ["Запрос → Ответ → Реклама", "Crawl → Index → Rank (сканирование, индексирование, ранжирование)", "Поиск → Сайт → Покупка", "URL → Дизайн → Контент"], correct: 1 },
+    opts: ["Запрос → Ответ → Реклама", "Crawl → Index → Rank (сканирование, индексирование, ранжирование)", "Поиск → Сайт → Покупка", "URL → Дизайн → Контент"], correct: 1, hide: true },
   { topic: "seo", q: "Из каких трёх компонентов состоит модель SEO?",
-    opts: ["Дизайн + Контент + Реклама", "Tech + Content + Authority", "SEO + SMM + PPC", "HTML + CSS + JS"], correct: 1 },
+    opts: ["Дизайн + Контент + Реклама", "Tech + Content + Authority", "SEO + SMM + PPC", "HTML + CSS + JS"], correct: 1, hide: true },
   { topic: "seo", q: "Какой аукцион использует Яндекс.Директ?",
-    opts: ["Аукцион первой цены", "VCG — «цена второго»", "Open auction", "Голландский аукцион"], correct: 1 },
+    opts: ["Аукцион первой цены", "VCG — «цена второго»", "Open auction", "Голландский аукцион"], correct: 1, hide: true },
   { topic: "seo", q: "Что такое Viewability в медийной рекламе?",
     opts: ["Стоимость показа", "Количество показов", "Стандарт IAB/MRC: ≥50% площади баннера видно ≥1 секунды", "Скорость загрузки баннера"], correct: 2 },
   { topic: "seo", q: "Какой канал создаёт спрос (верх воронки)?",
@@ -403,10 +403,13 @@ function esc(s) {
 
 function renderMCQ() {
   const root = document.getElementById("mcq-list");
-  root.innerHTML = MCQ.map((item, i) => `
-    <article class="q" data-qid="${i}">
+  // Keep original qid (index in MCQ array) for stable persistence, but renumber
+  // visible questions sequentially (01..N) so hidden ones don't leave gaps.
+  const visible = MCQ.map((item, qid) => ({ item, qid })).filter(({ item }) => !item.hide);
+  root.innerHTML = visible.map(({ item, qid }, displayIdx) => `
+    <article class="q" data-qid="${qid}">
       <div class="q-head">
-        <span class="q-num">${String(i + 1).padStart(2, "0")}</span>
+        <span class="q-num">${String(displayIdx + 1).padStart(2, "0")}</span>
         <span class="q-text">${esc(item.q)}</span>
         <span class="q-topic">${esc(TOPIC_LABELS[item.topic])}</span>
       </div>
@@ -581,9 +584,14 @@ function collectMcqAnswers() {
   return answers;
 }
 
+function visibleMcqCount() {
+  return MCQ.filter(m => !m.hide).length;
+}
+
 function scoreMcq(answers) {
   let score = 0;
   MCQ.forEach((item, qid) => {
+    if (item.hide) return;
     if (answers[qid] === item.correct) score += 1;
   });
   return score;
@@ -608,8 +616,9 @@ document.getElementById("btn-submit").addEventListener("click", async () => {
 
   const mcqAnswers = collectMcqAnswers();
   const answeredCount = Object.keys(mcqAnswers).length;
-  if (answeredCount < MCQ.length) {
-    if (!confirm("Заполнено " + answeredCount + " из " + MCQ.length + " вопросов части 1. Сдать всё равно?")) return;
+  const total = visibleMcqCount();
+  if (answeredCount < total) {
+    if (!confirm("Заполнено " + answeredCount + " из " + total + " вопросов части 1. Сдать всё равно?")) return;
   }
 
   const openAnswers = collectOpenAnswers();
@@ -628,7 +637,7 @@ document.getElementById("btn-submit").addEventListener("click", async () => {
     const body = {
       mcq_answers: mcqAnswers,
       mcq_score: score,
-      mcq_total: MCQ.length,
+      mcq_total: visibleMcqCount(),
       open_picked: openPicked,
       open_answers: openAnswers,
     };
@@ -640,7 +649,7 @@ document.getElementById("btn-submit").addEventListener("click", async () => {
       btn.textContent = "Сдать экзамен";
       return;
     }
-    showDone(score, MCQ.length);
+    showDone(score, visibleMcqCount());
   } catch (e) {
     alert("Сетевая ошибка: " + e.message);
     btn.disabled = false;
