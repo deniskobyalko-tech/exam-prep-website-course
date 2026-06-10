@@ -1,0 +1,20 @@
+# SECURITY: this repo is published via GitHub Pages.
+# Never commit the answer key or admin tooling — they would leak publicly.
+admin.php
+questions.json
+gen_questions.js
+gen_err.txt
+
+# Server-side PHP receiver (lives on reg.ru, not in Pages)
+_lib.php
+register.php
+submit.php
+result.php
+
+# Source material & local scratch
+lectures.json
+extract.py
+_*.py
+_*.txt
+_*.json
+*.bak
