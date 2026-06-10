@@ -520,7 +520,7 @@ function showDone(score, total) {
   document.getElementById("screen-exam").classList.add("hidden");
   document.getElementById("screen-register").classList.add("hidden");
   document.getElementById("done-score").textContent =
-    "Часть 1: " + score + " из " + total + ". Часть 2 — на ручной проверке.";
+    "Часть 1: " + score + " из " + total + " правильных. Часть 2 — всё ок ✓";
   document.getElementById("screen-done").classList.remove("hidden");
 }
 
@@ -630,6 +630,8 @@ document.getElementById("btn-submit").addEventListener("click", async () => {
   try {
     const score = scoreMcq(mcqAnswers);
     const body = {
+      name: stored.name,
+      group: stored.group,
       mcq_answers: mcqAnswers,
       mcq_score: score,
       mcq_total: visibleMcqCount(),
@@ -639,6 +641,13 @@ document.getElementById("btn-submit").addEventListener("click", async () => {
     };
     const resp = await apiPost("/submit.php", body, stored.token);
     if (!resp.ok) {
+      if (resp.status === 409) {
+        // Экзамен уже сдан ранее — пересдача запрещена, показываем сохранённый результат.
+        let data = {};
+        try { data = await resp.json(); } catch (_) {}
+        showDone(data.score != null ? data.score : score, data.total != null ? data.total : visibleMcqCount());
+        return;
+      }
       const text = await resp.text();
       alert("Не удалось отправить (" + resp.status + "). " + text.slice(0, 200));
       btn.disabled = false;
