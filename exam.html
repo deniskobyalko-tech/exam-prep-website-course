@@ -470,8 +470,9 @@ function renderOpen() {
 
 // --- Registration + submit flow ---
 
-// Backend lives on the same VPS as site-practice-bot, behind nginx prefix /site-practice.
-const API_BASE = "https://alarm-trusty-ru.ru/site-practice/api";
+// Backend: stateless PHP receiver on reg.ru shared hosting (stable, no daemon to crash).
+// Token is passed as ?t= query param because shared hosting strips the Authorization header.
+const API_BASE = "https://trustyone.pro/exam-api";
 const STORAGE_KEY = "exam-registration";
 let selectedGroup = "";
 
@@ -490,19 +491,17 @@ function setStored(patch) {
 }
 
 async function apiPost(path, body, token) {
-  const headers = { "Content-Type": "application/json" };
-  if (token) headers["Authorization"] = "Bearer " + token;
-  const resp = await fetch(API_BASE + path, {
+  const url = API_BASE + path + (token ? "?t=" + encodeURIComponent(token) : "");
+  const resp = await fetch(url, {
     method: "POST",
-    headers,
+    headers: { "Content-Type": "application/json" },
     body: body == null ? undefined : JSON.stringify(body),
   });
   return resp;
 }
 async function apiGet(path, token) {
-  const headers = {};
-  if (token) headers["Authorization"] = "Bearer " + token;
-  const resp = await fetch(API_BASE + path, { method: "GET", headers });
+  const url = API_BASE + path + (token ? "?t=" + encodeURIComponent(token) : "");
+  const resp = await fetch(url, { method: "GET" });
   return resp;
 }
 
@@ -541,7 +540,7 @@ document.getElementById("btn-start").addEventListener("click", async () => {
   const btn = document.getElementById("btn-start");
   btn.disabled = true;
   try {
-    const resp = await apiPost("/web-register", { name, group: selectedGroup });
+    const resp = await apiPost("/register.php", { name, group: selectedGroup });
     if (!resp.ok) {
       alert("Не удалось зарегистрироваться на сервере. Попробуйте ещё раз.");
       btn.disabled = false;
@@ -553,7 +552,7 @@ document.getElementById("btn-start").addEventListener("click", async () => {
 
     // If this student already submitted earlier (e.g. opened on another device with same token), show done.
     try {
-      const r = await apiGet("/exam/result", student.token);
+      const r = await apiGet("/result.php", student.token);
       if (r.ok) {
         const res = await r.json();
         if (res.submitted) {
@@ -635,9 +634,10 @@ document.getElementById("btn-submit").addEventListener("click", async () => {
       mcq_score: score,
       mcq_total: visibleMcqCount(),
       open_picked: openPicked,
+      open_questions: openPicked.map(i => (OPEN[i] && OPEN[i].q) || ""),
       open_answers: openAnswers,
     };
-    const resp = await apiPost("/exam/submit", body, stored.token);
+    const resp = await apiPost("/submit.php", body, stored.token);
     if (!resp.ok) {
       const text = await resp.text();
       alert("Не удалось отправить (" + resp.status + "). " + text.slice(0, 200));
@@ -659,7 +659,7 @@ document.getElementById("btn-submit").addEventListener("click", async () => {
   if (!stored || !stored.name || !stored.group || !stored.token) return;
   // Check if exam already submitted on backend → show done screen.
   try {
-    const r = await apiGet("/exam/result", stored.token);
+    const r = await apiGet("/result.php", stored.token);
     if (r.ok) {
       const data = await r.json();
       if (data.submitted) {
